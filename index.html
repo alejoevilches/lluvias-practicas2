@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <title>Registro de lluvias</title>
+</head>
+<body>
+    <main>
+        <section class="container">
+            <h1>Registro de lluvias</h1>
+            <form onsubmit="onSubmit(event)">
+                <label for="date">Ingrese la fecha</label>
+                <input required id="date" name="date" type="date">
+                <label for="mm">¿Cuantos milimetros de lluvia se registraron?</label>
+                <input required id="mm" name="mm" type="number">
+                <input type="submit" placeholder="Enviar">
+            </form>
+        </section>
+    </main>
+</body>
+</html>
