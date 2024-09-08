@@ -14,7 +14,7 @@ body{
     background-size: cover;}
 
 .container{
-    width:40vw;
+    width:60vw;
     background-color: gray;
     padding:40px;
     border-radius: 20px;
@@ -31,5 +31,5 @@ form{
 }
 
 form input{
-    width:50vw;
+    width:20vw;
 }
