@@ -8,6 +8,10 @@ const onSubmit = (event) => {
     event.preventDefault();
     const data=new FormData(event.target);
     const date = data.get("date");
+    if(rainyDays.some(day => day.date === date)) {
+        alert("Ya existe un registro para esta fecha");
+        return;
+    }
     const mm = data.get("mm");
     rainyDays.push({date, mm});
     alert("Registro exitoso");
