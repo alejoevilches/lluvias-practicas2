@@ -33,3 +33,13 @@ form{
 form input{
     width:20vw;
 }
+
+.prom{
+    background-color: gray;
+    font-size: x-large;
+    text-align: center;
+    padding:20px;
+    margin-top: 10px;
+    border-radius: 20px;
+
+}
