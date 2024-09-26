@@ -8,9 +8,11 @@ const onSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     const date = data.get("date");
-    if (new Date(date) > day) {
+    const today = new Date();
+    const todayDate = today.toISOString().split('T')[0];
+    if (date >= todayDate) {
         Toastify({
-            text: "No se pueden agregar fechas futuras",
+            text: "No se pueden agregar fechas futuras o presentes",
             duration: 3000,
             gravity: "top",
             position: 'right',
