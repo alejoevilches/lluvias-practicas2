@@ -7,7 +7,7 @@ let prom = 0;
 const onSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    const date = new Date(data.get("date")).toLocaleDateString("en-GB");
+    const date = data.get("date");
     if (new Date(date) > day) {
         Toastify({
             text: "No se pueden agregar fechas futuras",
