@@ -1,44 +1,72 @@
-*{
-    margin:0;
+@font-face {
+    font-family: "Inter";
+    src: url(Inter-VariableFont_opsz\,wght.ttf);
+}
+
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
+    font-family: "Inter", sans-serif;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url(background.jpg);
+    background-image: url(background.jpg); 
     background-repeat: no-repeat;
-    background-size: cover;}
-
-.container{
-    width:60vw;
-    background-color: gray;
-    padding:40px;
-    border-radius: 20px;
+    background-size: cover;
 }
 
-.container h1{
+.container {
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+}
+
+.container h1 {
     text-align: center;
+    color: #333; 
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-form input{
-    width:20vw;
+form input[type="date"],
+form input[type="number"],
+form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0; 
+    border: 1px solid #ddd; 
+    border-radius: 8px;
+    font-size: 16px; 
 }
 
-.prom{
-    background-color: gray;
+form input[type="submit"] {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background-color: #005bb5;
+}
+
+.prom {
+    background-color: rgba(240, 240, 240, 0.9); 
     font-size: x-large;
     text-align: center;
-    padding:20px;
-    margin-top: 10px;
-    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
