@@ -38,7 +38,7 @@ const onSubmit = (event) => {
         backgroundColor: "#4caf50",
     }).showToast();
     updateProm();
-    showProm();
+    showData();
 }
 
 const updateProm = () => {
@@ -50,8 +50,10 @@ const updateProm = () => {
     prom = total / length;
 }
 
-const showProm = () => {
+const showData = () => {
     const container = document.querySelector("#prom_number");
+    const worst = document.querySelector("#worst_day");
+    worst.innerHTML = calculateWorstDay();
     if (rainyDays.length === 0) {
         container.innerHTML = "Ingresa un registro para conocer el promedio de lluvias";
     } else {
@@ -59,4 +61,15 @@ const showProm = () => {
     }
 }
 
-document.addEventListener("DOMContentLoaded", showProm);
+const calculateWorstDay = () => {
+    if (rainyDays.length === 0) return "";
+    let worstDay = rainyDays[0];
+    rainyDays.forEach((day) => {
+        if (parseInt(day.mm) > parseInt(worstDay.mm)) {
+            worstDay = day;
+        }
+    });
+    return `El peor dia de lluvia fue el ${worstDay.date} con ${worstDay.mm} mm de lluvia`;
+}
+
+document.addEventListener("DOMContentLoaded", showData);

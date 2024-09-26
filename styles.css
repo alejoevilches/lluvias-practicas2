@@ -63,8 +63,11 @@ form input[type="submit"]:hover {
 }
 
 .prom {
+    display: flex;
+    flex-direction: column;
     background-color: rgba(240, 240, 240, 0.9); 
-    font-size: x-large;
+    font-size:medium;
+    gap:10px;
     text-align: center;
     padding: 20px;
     margin: 20px;
