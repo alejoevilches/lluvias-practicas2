@@ -8,6 +8,10 @@ const onSubmit = (event) => {
     event.preventDefault();
     const data=new FormData(event.target);
     const date = data.get("date");
+    if(new Date(date) > day) {
+        alert("No se pueden agregar fechas futuras");
+        return;
+    }
     if(rainyDays.some(day => day.date === date)) {
         alert("Ya existe un registro para esta fecha");
         return;
