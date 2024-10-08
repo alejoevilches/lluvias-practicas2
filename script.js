@@ -10,6 +10,17 @@ const onSubmit = (event) => {
     const date = data.get("date");
     const today = new Date();
     const todayDate = today.toISOString().split('T')[0];
+    const currentYear = today.getFullYear();
+    if (date.split("-")[0] < currentYear) {
+        Toastify({
+            text: "No se pueden ingresar fechas fuera del año actual",
+            duration: 3000,
+            gravity: "top",
+            position: 'right',
+            backgroundColor: "red",
+        }).showToast();
+        return;
+    }
     if (date >= todayDate) {
         Toastify({
             text: "No se pueden agregar fechas futuras o presentes",
