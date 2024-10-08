@@ -31,6 +31,16 @@ const onSubmit = (event) => {
         return;
     }
     const mm = data.get("mm");
+    if (mm < 0) {
+        Toastify({
+            text: "No se pueden registrar numeros negativos",
+            duration: 3000,
+            gravity: "top",
+            position: 'right',
+            backgroundColor: "red",
+        }).showToast();
+        return;
+    }
     rainyDays.push({ date, mm });
     Toastify({
         text: "Registro de lluvia agregado exitosamente!",
