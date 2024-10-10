@@ -4,6 +4,9 @@ const day = new Date();
 
 let prom = 0;
 
+// Array con los nombres de los meses
+const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
 const onSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
@@ -82,6 +85,8 @@ const showData = () => {
     } else {
         container.innerHTML = `El promedio de lluvia en los días cargados es de ${(prom * 100).toFixed(0) / 100} mm`;
     }
+    showMonthlyRainStats();
+    showMonthsWithNoRain();
 }
 
 const calculateWorstDay = () => {
@@ -92,7 +97,57 @@ const calculateWorstDay = () => {
             worstDay = day;
         }
     });
-    return `El peor dia de lluvia fue el ${worstDay.date} con ${worstDay.mm} mm de lluvia`;
+    return `El peor día de lluvia fue el ${worstDay.date} con ${worstDay.mm} mm de lluvia`;
+}
+
+const showMonthlyRainStats = () => {
+    if (rainyDays.length === 0) return "";
+
+    const monthlyRain = {};
+
+    rainyDays.forEach(day => {
+        const month = day.date.split("-")[1];
+        if (!monthlyRain[month]) {
+            monthlyRain[month] = 0;
+        }
+        monthlyRain[month] += parseInt(day.mm);
+    });
+
+    let maxRainMonth = "";
+    let minRainMonth = "";
+    let maxRain = -Infinity;
+    let minRain = Infinity;
+
+    for (const month in monthlyRain) {
+        if (monthlyRain[month] > maxRain) {
+            maxRain = monthlyRain[month];
+            maxRainMonth = month;
+        }
+        if (monthlyRain[month] < minRain) {
+            minRain = monthlyRain[month];
+            minRainMonth = month;
+        }
+    }
+
+    const container = document.querySelector("#prom_number");
+    container.innerHTML += `<br>El mes con más lluvia fue ${monthNames[parseInt(maxRainMonth) - 1]} con ${maxRain} mm<br>El mes con menos lluvia fue ${monthNames[parseInt(minRainMonth) - 1]} con ${minRain} mm`;
+}
+
+const showMonthsWithNoRain = () => {
+    if (rainyDays.length === 0) return "";
+
+    const monthsWithRain = new Set(rainyDays.map(day => day.date.split("-")[1]));
+
+    const allMonths = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+    const monthsWithoutRain = allMonths.filter(month => !monthsWithRain.has(month));
+
+    const container = document.querySelector("#prom_number");
+    if (monthsWithoutRain.length > 0) {
+        const monthsWithoutRainNames = monthsWithoutRain.map(month => monthNames[parseInt(month) - 1]);
+        container.innerHTML += `<br>Los meses sin lluvia hasta ahora son: ${monthsWithoutRainNames.join(", ")}`;
+    } else {
+        container.innerHTML += `<br>No hubo meses sin lluvia hasta ahora.`;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", showData);
